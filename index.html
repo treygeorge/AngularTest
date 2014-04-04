@@ -1,0 +1,21 @@
+<!doctype html>
+<html ng-app="angularTest">
+  <head>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+  </head>
+  <body>
+    <div ng-controller="VideosController">
+      <label>User Name:</label>
+      <input id="searchName" type="text" ng-model="searchName" placeholder="Enter a name here">
+      <search-button></search-button>
+      <hr>
+
+      <div videos="videos"></div>
+    </div>
+    
+    <script src="angularTest.js"></script>
+
+    <div ng-view></div>
+  </body>
+</html>
