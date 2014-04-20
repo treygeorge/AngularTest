@@ -1,0 +1,26 @@
+<div ng-controller="FollowsController">
+  <label>Twitch User Name:</label>
+  <input id="searchName" type="text" ng-model="searchName" placeholder="Enter a user name">
+  <search-follows-button></search-follows-button>
+
+  <hr>
+  <h1>Follows For: {{ userName }}</h1>
+
+  	<div class="followsList">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>&nbsp</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="follow in follows">
+					<td>{{ follow.channel.name }}</td>
+					<td><a href="{{ follow.channel.url }}">View</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</div>
