@@ -1,18 +1,27 @@
-<div class="videosList">
-	<table>
-		<thead>
-			<tr>
-				<th>Title</th>
-				<th>Description</th>
-				<th>&nbsp</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="video in videos">
-				<td>{{ video.title }}</td>
-				<td>{{ video.description }}</td>
-				<td><a href="{{ video.url }}">View</a></td>
-			</tr>
-		</tbody>
-	</table>
+<div ng-controller="VideosController">
+	<label>Twitch User Name:</label>
+	<input id="searchName" type="text" ng-model="searchName" placeholder="Enter a user name">
+	<search-videos-button></search-videos-button>
+
+	<hr>
+	<h1>Videows For: {{ userName }}</h1>
+
+	<div class="videosList">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>Description</th>
+					<th>&nbsp</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="video in videos">
+					<td>{{ video.title }}</td>
+					<td>{{ video.description }}</td>
+					<td><a href="{{ video.url }}">View</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </div>

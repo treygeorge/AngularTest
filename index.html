@@ -1,21 +1,25 @@
-<!doctype html>
+<!DOCTYPE html>
 <html ng-app="angularTest">
-  <head>
-    <script src="bower_components/angular/angular.min.js"></script>
-    <script src="bower_components/angular-route/angular-route.min.js"></script>
-  </head>
-  <body>
-    <div ng-controller="VideosController">
-      <label>User Name:</label>
-      <input id="searchName" type="text" ng-model="searchName" placeholder="Enter a name here">
-      <search-button></search-button>
-      <hr>
+    <head>
+        <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <script src="bower_components/jquery/dist/jquery.min.js">
+        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="bower_components/angular/angular.min.js"></script>
+        <script src="bower_components/angular-route/angular-route.min.js"></script>
+    </head>
+    <body>
+    <div class="header">
+        <ul class="nav nav-tabs">
+            <li><a href="#/videos">Videos</a></li>
+            <li><a href="#/follows">Follows</a></li>
+            <li><a href="#/channels">Channels</a></li>
+        </ul>
 
-      <div videos="videos"></div>
+        <script src="angularTest.js"></script>
+
     </div>
-    
-    <script src="angularTest.js"></script>
-
-    <div ng-view></div>
-  </body>
+    <div class="container">
+        <div ng-view></div>
+      </div>
+    </body>
 </html>
