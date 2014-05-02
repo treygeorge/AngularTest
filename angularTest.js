@@ -12,6 +12,10 @@ angular.module('angularTest', ['ngRoute'])
         controller: 'FollowsController',
         templateUrl:'views/follows.html'
     })
+    .when('/channel', {
+        controller: 'ChannelController',
+        templateUrl:'views/channel.html'
+    })
     .otherwise({
         redirectTo:'/videos'
     });
@@ -24,10 +28,28 @@ angular.module('angularTest', ['ngRoute'])
 		},
 		getFollows : function(userName) {
 			return $http.jsonp(twitchApi + '/users/' + userName + '/follows/channels?limit=10' + '&callback=JSON_CALLBACK');
-		}
+		},
+        getChannel : function(userName) {
+            return $http.jsonp(twitchApi + '/channels/' + userName + '?callback=JSON_CALLBACK');
+        }
 	};
 
 	return videoService;
+})
+
+.controller('ChannelController', function($scope, $routeParams, twitchApi, $http, videoService) {
+    if($scope.userName == undefined)
+        $scope.userName = 'wingsofdeath';
+
+    function init() {
+        videoService.getChannel($scope.userName)
+            .success(function(data) {
+                console.log(data);
+                $scope.channel = data
+            });
+    }
+
+    init();
 })
 
 .controller('VideosController', function($scope, $routeParams, twitchApi, $http, videoService) {
@@ -57,6 +79,33 @@ angular.module('angularTest', ['ngRoute'])
 	}
 
 	init();
+})
+
+.directive('searchChannelsButton', function(videoService){
+
+    return {
+        restrict: 'EA',
+        replace: false,
+        templateUrl: 'directives/updateChannelButton.html',
+        link: function(scope, $element) {
+
+            var getChannel = function() {
+                var searchName = scope.searchName;
+                videoService.getChannel(searchName)
+                    .then(
+                        function(response){
+                            scope.channel = response.data;
+                            scope.userName = searchName;
+                        });
+            }
+
+            $element.on('click', function() {
+                scope.$apply(getChannel);
+            });
+
+            scope.updateChannel = getChannel;
+        }
+    }
 })
 
 .directive('searchVideosButton', function(videoService){

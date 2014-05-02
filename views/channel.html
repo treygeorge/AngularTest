@@ -1,0 +1,26 @@
+<div ng-contoller="ChannelController">
+
+    <div class="row">
+        <label>Twitch User Name:</label>
+        <input id="searchName" type="text" ng-model="searchName" placeholder="Enter a user name">
+        <search-channels-button></search-channels-button>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <img src="{{channel.banner}}">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Channel Name</th><th>Current Game</th><th>&nbsp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{channel.name}}</td><td>{{channel.game}}</td><td><a href="{{channel.url}}">View</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
